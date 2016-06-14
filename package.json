@@ -1,0 +1,17 @@
+{
+  "name": "tech-talks",
+  "version": "0.0.1",
+  "description": "An API to grab the audio from a video and store it somewhere. Mainly intended for tech talks you want to stream.",
+  "main": "app.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Doug Swain",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "tslint": "^3.11.0",
+    "typescript": "^1.8.10"
+  }
+}
