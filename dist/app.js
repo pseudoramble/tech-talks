@@ -4,11 +4,20 @@ const bodyParser = require('body-parser');
 const talks_1 = require('./api/talks');
 const app = express();
 const port = 3141;
+app.set("view engine", "pug");
+app.set("views", "./views");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.get('/', (req, res) => {
-    console.warn(`Got request ${req}`);
-    res.json({});
+    talks_1.getAllTalks()
+        .then(entries => {
+        res.render('index', { pageTitle: 'Tech Talks To Try Tonight!', talks: entries });
+    })
+        .catch((err) => {
+        res
+            .status(500)
+            .send(`<h1>${err.message}</h1>\n`);
+    });
 });
 app.post('/api/add', (req, res) => {
     talks_1.addTalk(req.body.url)
@@ -22,8 +31,6 @@ app.post('/api/add', (req, res) => {
     });
 });
 app.get('/api/get/:v', (req, res) => {
-    console.warn(req.params['v']);
-    console.warn(req.params);
     talks_1.getTalk(req.params['v'])
         .then(result => {
         res.download(result.path, result.name);

@@ -60,3 +60,18 @@ export function getTalk(id: string) {
         }
     });
 };
+
+export function getAllTalks() {
+    return new Promise<any>((resolve, reject) => {
+        const talks: any = [];
+
+        for (let [id, file] of fileTable.entries()) {
+            talks.push({
+                id,
+                title: file.substring(5, file.lastIndexOf('.'))
+            });
+        }
+
+        resolve(talks);
+    });
+};

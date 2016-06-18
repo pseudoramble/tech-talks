@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+  head
+    title= pageTitle
+    script(type='text/javascript').
+        function addTalk() {
+          var talkUrl = document.getElementById('talkUrlInput').value;
+
+          if (talkUrl) {
+            var req = new XMLHttpRequest();
+            var params = JSON.stringify({ url: talkUrl });
+            console.warn(params);
+
+            req.open("POST", "/api/add");
+            req.setRequestHeader("Content-Type", "application/json");
+            req.send(params);
+          } else {
+            console.warn('Could not find a URL to ship');
+          }
+        }
+  body
+    h1= pageTitle
+    p Add a new talk below.
+    input(type="text", id="talkUrlInput" placeholder="Ex: https://youtu.be/asdf1234", size=32)
+    button(onClick="addTalk();") Add This Talk!
+      
+    #container.col
+      h3 Existing talks
+      
+      .talks
+        each talk in talks
+          .entry
+            a(href='/api/get/' + talk.id) #{talk.title}

@@ -57,3 +57,17 @@ function getTalk(id) {
 }
 exports.getTalk = getTalk;
 ;
+function getAllTalks() {
+    return new Promise((resolve, reject) => {
+        const talks = [];
+        for (let [id, file] of fileTable.entries()) {
+            talks.push({
+                id: id,
+                title: file.substring(5, file.lastIndexOf('.'))
+            });
+        }
+        resolve(talks);
+    });
+}
+exports.getAllTalks = getAllTalks;
+;
