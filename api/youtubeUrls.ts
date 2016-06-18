@@ -24,5 +24,6 @@ const videoId = (url: string) => {
         return parsedUrl.path.substring(1);
     }
 }
+const genUrl = (id: string) => `https\:\/\/www.youtube.com\/watch?v=${id}`;
 
-export { videoId, validVideoId, validUrl }
+export { genUrl, videoId, validVideoId, validUrl }

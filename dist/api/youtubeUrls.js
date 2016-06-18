@@ -27,3 +27,5 @@ const videoId = (url) => {
     }
 };
 exports.videoId = videoId;
+const genUrl = (id) => `https\:\/\/www.youtube.com\/watch?v=${id}`;
+exports.genUrl = genUrl;
