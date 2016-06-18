@@ -2,8 +2,10 @@
   "name": "tech-talks",
   "dependencies": {},
   "globalDependencies": {
+    "body-parser": "registry:dt/body-parser#0.0.0+20160317120654",
     "express": "registry:dt/express#4.0.0+20160317120654",
     "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160602151406",
+    "js-url": "registry:dt/js-url#0.0.0+20160316155526",
     "mime": "registry:dt/mime#0.0.0+20160316155526",
     "node": "registry:dt/node#6.0.0+20160613154055",
     "serve-static": "registry:dt/serve-static#0.0.0+20160606155157"
