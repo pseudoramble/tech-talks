@@ -1,7 +1,7 @@
 "use strict";
 const express = require('express');
 const bodyParser = require('body-parser');
-const addTalk_1 = require('./api/addTalk');
+const talks_1 = require('./api/talks');
 const app = express();
 const port = 3141;
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
     res.json({});
 });
 app.post('/api/add', (req, res) => {
-    addTalk_1.addTalk(req.body.url)
+    talks_1.addTalk(req.body.url)
         .then(result => {
         res.send({ id: result.id });
     })
@@ -21,8 +21,18 @@ app.post('/api/add', (req, res) => {
             .send(`<h1>${err.message}</h1>\n`);
     });
 });
-app.get('/api/add', (req, res) => {
-    res.status(500).send('<h1>Oops! You probably meant to POST to /api/add</h1>\n');
+app.get('/api/get/:v', (req, res) => {
+    console.warn(req.params['v']);
+    console.warn(req.params);
+    talks_1.getTalk(req.params['v'])
+        .then(result => {
+        res.download(result.path, result.name);
+    })
+        .catch((err) => {
+        res
+            .status(500)
+            .send(`<h1>${err.message}</h1>\n`);
+    });
 });
 app.listen(port, () => {
     console.warn('App started');

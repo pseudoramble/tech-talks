@@ -10,7 +10,6 @@ const extractAudio = (id) => new Promise((resolve, reject) => {
         console.warn(data.toString());
     });
     downloaderProcess.on('exit', (code) => {
-        console.warn('Done. Code = ', code);
         if (code === 0) {
             resolve({ id: id });
         }

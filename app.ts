@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 
-import { addTalk } from './api/addTalk';
+import { addTalk, getTalk } from './api/talks';
 
 const app = express();
 const port = 3141;
@@ -25,8 +25,20 @@ app.post('/api/add', (req, res) => {
                 .send(`<h1>${err.message}</h1>\n`);
         });
 });
-app.get('/api/add', (req, res) => {
-    res.status(500).send('<h1>Oops! You probably meant to POST to /api/add</h1>\n');
+
+app.get('/api/get/:v', (req, res) => {
+    console.warn(req.params['v']);
+    console.warn(req.params);
+
+    getTalk(req.params['v'])
+        .then(result => {
+            res.download(result.path, result.name);
+        })
+        .catch((err: Error) => {
+            res
+                .status(500)
+                .send(`<h1>${err.message}</h1>\n`);
+        });
 });
 
 app.listen(port, () => {
