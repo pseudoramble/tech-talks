@@ -4,12 +4,22 @@ html(lang="en")
     title= pageTitle
     script(type='text/javascript').
         function addTalk() {
-          var talkUrl = document.getElementById('talkUrlInput').value;
+          var talkUrlInput = document.getElementById('talkUrlInput');
+          var talkButton = document.getElementById('addTalkButton');
 
-          if (talkUrl) {
+          if (talkUrlInput && talkUrlInput.value) {
+            var talkUrl = talkUrlInput.value;
+            var textContent = talkButton.textContent;
             var req = new XMLHttpRequest();
             var params = JSON.stringify({ url: talkUrl });
-            console.warn(params);
+            
+            talkUrlInput.setAttribute("readonly", true);
+            talkButton.setAttribute("disabled", true);
+            talkButton.textContent = "Adding Talk. Will enable shortly!";
+
+            req.addEventListener("load", function() {
+              location.reload();
+            });
 
             req.open("POST", "/api/add");
             req.setRequestHeader("Content-Type", "application/json");
@@ -21,8 +31,8 @@ html(lang="en")
   body
     h1= pageTitle
     p Add a new talk below.
-    input(type="text", id="talkUrlInput" placeholder="Ex: https://youtu.be/asdf1234", size=32)
-    button(onClick="addTalk();") Add This Talk!
+    input(type="text" id="talkUrlInput" placeholder="Ex: https://youtu.be/asdf1234", size=32)
+    button(onClick="addTalk();" id="addTalkButton") Add This Talk!
       
     #container.col
       h3 Existing talks

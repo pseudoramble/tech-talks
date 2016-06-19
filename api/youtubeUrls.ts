@@ -1,6 +1,6 @@
 import { parse as jsurl, Url } from "url";
 
-const videoIdRegex = /^[A-Za-z0-9]+$/;
+const videoIdRegex = /^[A-Za-z0-9_-]+$/;
 const parseUrl = (url: string) => jsurl(url, true);
 const validUrl = (url: string) => {
     const parsedUrl = parseUrl(url);

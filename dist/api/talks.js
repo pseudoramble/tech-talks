@@ -19,8 +19,8 @@ const extractAudio = (id) => new Promise((resolve, reject) => {
     });
     downloaderProcess.on('exit', (code) => {
         if (code === 0) {
-            const filenameTest = child_process_1.spawnSync("youtube-dl", ["--get-filename", youtubeUrls_1.genUrl(id)]);
-            fileTable.set(id, filenameTest.stdout.toString());
+            const filenameTest = child_process_1.spawnSync("youtube-dl", ["-x", "--get-title", youtubeUrls_1.genUrl(id)]);
+            fileTable.set(id, `repo/${filenameTest.stdout.toString().trim()}.ogg`);
             resolve({ id: id });
         }
         else {

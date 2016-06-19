@@ -25,8 +25,8 @@ const extractAudio = (id: string) => new Promise<any>((resolve, reject) => {
 
     downloaderProcess.on('exit', (code: number) => {
         if (code === 0) {
-            const filenameTest = spawnSync("youtube-dl", ["--get-filename", genUrl(id)]);
-            fileTable.set(id, filenameTest.stdout.toString());
+            const filenameTest = spawnSync("youtube-dl", ["-x", "--get-title", genUrl(id)]);
+            fileTable.set(id, `repo/${filenameTest.stdout.toString().trim()}.ogg`);
             resolve({ id });
         } else {
             reject(new Error("While downloading & extracting, something bad happened"));

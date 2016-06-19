@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
     getAllTalks()
         .then(entries => {
-            res.render('index', { pageTitle: 'Tech Talks To Try Tonight!', talks: entries });
+            res.render('index', { pageTitle: 'Tech Talks To Try Today!', talks: entries });
         })
         .catch((err: Error) => {
             res

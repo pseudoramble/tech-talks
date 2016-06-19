@@ -1,6 +1,6 @@
 "use strict";
 const url_1 = require("url");
-const videoIdRegex = /^[A-Za-z0-9]+$/;
+const videoIdRegex = /^[A-Za-z0-9_-]+$/;
 const parseUrl = (url) => url_1.parse(url, true);
 const validUrl = (url) => {
     const parsedUrl = parseUrl(url);
