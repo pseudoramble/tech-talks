@@ -6,4 +6,11 @@ The goal of this is to get a repository of audio recordings from YouTube videos.
 2. Send that video through `youtube-dl` and extract the audio & metadata.
 3. Upload it to a place to make it easy to stream or download.
 
-Enjoy!
+As a side goal, this is also to begin exploring TypeScript.
+
+## Issues & Improvements
+
+1. A queue for video uploads.
+2. Web sockets for progressive updates.
+3. Styling.
+4. All the other bugs I'm not aware of as of yet.
